@@ -1,0 +1,9 @@
+// функція для пропорційного зменшення - use -> vw(30px)
+
+$vw-viewport: 1920;
+
+@function vw($font) {
+  $vw-context: calc($vw-viewport * 0.01 * 1px);
+  @return calc($font / $vw-context * 1vw);
+  @return $font;
+} 

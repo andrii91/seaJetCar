@@ -1,0 +1,9 @@
+// Media breakpoints
+$phonePortrait:   '(max-width: 570px)';
+$phoneLandscape:  '(max-width: 720px)';
+$tabletPortrait:  '(min-width: 721px) and (max-width: 1023px)';
+$tabletLandscape: '(min-width: 1024px) and (max-width: 1199px)';
+$desktop:         '(min-width: 1200px)';
+$desktopWide:     '(min-width: 1367px) and (max-width: 1680px)';
+$desktopHD:       '(min-width: 1681px) and (max-width: 1920px)';
+$desktopMega:     '(min-width: 1921px)';
