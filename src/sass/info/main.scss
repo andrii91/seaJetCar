@@ -1,5 +1,209 @@
 @import 'variables';
 
+.select-hidden {
+  display: none;
+  visibility: hidden;
+  padding-right: 10px;
+}
+
+.select-color {
+  li, .select-item {
+    display: flex;
+    align-items: center;
+    i {
+      width: 20px;
+      height: 20px;
+      display: inline-block;
+      border-radius: 3px;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+  }
+}
+
+.select {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  font-size: 16px;
+  width: 100%;
+  color: #f4f7fe;
+  margin-top: 19px;
+}
+
+.select-styled {
+  border-radius: 7px;
+  border: 1px solid #1d2960;
+  background-color: #0f173d;
+  display: block;
+  z-index: 1;
+  padding: 30px 20px 10px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 26px;
+  margin: 0;
+  position: relative;
+  min-height: 68px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &:before {
+    content: 'Please pick an option';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 26px;
+    color: #f4f7fe;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 20px;
+    transition: .3s;
+  }
+
+  &.select-item {
+    &:before {
+      font-size: 13px;
+      line-height: 19px;
+      transform: none;
+      top: 10px;
+
+    }
+  }
+
+  //  @include transition(all 0.2s ease-in);
+  &:after {
+    content: "";
+    top: 50%;
+    right: 20px;
+    position: absolute;
+    border: solid #81808d;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg) translateY(-50%);
+  }
+
+  &:hover {
+    background-color: darken( #0f173d, 2);
+  }
+
+  &:active,
+  &.active {
+    border-bottom: 0;
+    box-sizing: border-box;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-radius: 7px;
+    border: 1px solid #1d2960;
+    background-color: #0f173d;
+    
+  }
+}
+
+.select-options {
+  display: none;
+  position: absolute;
+  top: 97%;
+  right: 0;
+  left: 0;
+  z-index: 999;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  //  background-color: darken( #0f173d, 5);
+  background-color: #0f173d;
+  border: 2px solid #1d2960;
+  box-sizing: border-box;
+  //   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  border-top: 0;
+  max-height: 260px;
+  overflow-y:auto; 
+ 
+  li {
+    margin: 0;
+    padding: 23px 20px;
+    border-top: 1px solid darken( #0f173d, 10);
+    //    @include transition(all 0.15s ease-in);
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    min-height: 68px;
+
+    &:hover {
+      color: #fff;
+      background-color: darken( #0f173d, 2);
+    }
+  }
+}
+
+.checkbox-custom {
+  position: relative;
+  margin-bottom: 25px;
+   input {
+    padding: 0;
+    height: initial;
+    width: initial;
+    margin-bottom: 0;
+    display: none;
+    cursor: pointer;
+  }
+   
+   label {
+    padding-left: 39px;
+    position: relative;
+    cursor: pointer;
+    font-family: 'Lato-Regular';
+    font-size: 16px;
+    font-weight: 400;
+    color: #f4f7fe;
+    line-height: 1;
+    text-align: left;
+
+    &:before {
+      content:'';
+      width: 28px;
+      height: 28px;
+      background-color: #0f173d;
+      border: 1px solid #1d2960;
+      border-radius: 3px;
+      display: inline-block;
+      vertical-align: middle;
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+  span{
+    top: -2px;
+    display: block;
+    padding-left: 39px;
+  }
+
+   input:checked + label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 16px;
+    height: 16px;
+    background-image: url("data:image/svg+xml,%3Csvg height='16px' width='16px' version='1.1' id='Capa_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 17.837 17.837' xml:space='preserve' fill='%23000000'%3E%3Cg id='SVGRepo_bgCarrier' stroke-width='0'%3E%3C/g%3E%3Cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'%3E%3C/g%3E%3Cg id='SVGRepo_iconCarrier'%3E%3Cg%3E%3Cpath style='fill:%23ff600b;' d='M16.145,2.571c-0.272-0.273-0.718-0.273-0.99,0L6.92,10.804l-4.241-4.27 c-0.272-0.274-0.715-0.274-0.989,0L0.204,8.019c-0.272,0.271-0.272,0.717,0,0.99l6.217,6.258c0.272,0.271,0.715,0.271,0.99,0 L17.63,5.047c0.276-0.273,0.276-0.72,0-0.994L16.145,2.571z'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+}
+
+.checkbox-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
 .label {
   position: relative;
 }
@@ -135,25 +339,42 @@ nav {
         right: -12px;
         z-index: -1;
       }
-      .language-list li {
-        font-family: 'Lato-Regular';
-        font-size: 16px;
-        font-weight: 400;
-        line-height: normal;
-        cursor: pointer;
-        padding: 5px;
-        display: flex;
-        align-items: center;
-        color: #ffffff;
+      .language-list  {
+        li {
+          font-family: 'Lato-Regular';
+          font-size: 16px;
+          font-weight: 400;
+          line-height: normal;
+          cursor: pointer;
+          padding: 5px;
+          display: flex;
+          align-items: center;
+          color: #ffffff;
+          transition: .3s;
+
+          a {
+            font-family: 'Lato-Regular';
+            font-size: 16px;
+            font-weight: 400;
+            line-height: normal;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            color: #ffffff;
+          }
+
+          img {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+          }
+
+          &:hover {
+            background-color: #1c164f;
+          }
+        }
       }
-      .language-list li img {
-        width: 20px;
-        height: 20px;
-        margin-right: 5px;
-      }
-      .language-list li:hover {
-        background-color: #1c164f;
-      }
+
       .language-list.show {
         display: block;
       }
@@ -524,7 +745,7 @@ main{
             font-size: 16px;
             font-weight: 400;
             color: #ff600b;
-            line-height: 9.53px;
+            line-height: 1;
             text-align: left;
             position: relative;
             display: flex;
@@ -570,6 +791,7 @@ main{
             h3{text-align: center;}
             form{
               display: flex;
+              align-items: flex-start;
               flex-wrap: wrap;
               justify-content: space-between;
             }
@@ -600,29 +822,31 @@ main{
               text-align: left;
               span{
                 padding-left: 39px;
-                top: -5px;
+                top: -2px;
               }
+            }
+            .form-group label {
+              padding-left: 39px;
             }
             .form-group label:before {
               content:'';
-              -webkit-appearance: none;
               width: 28px;
               height: 28px;
               background-color: #0f173d;
               border: 1px solid #1d2960;
               border-radius: 3px;
               display: inline-block;
-              position: relative;
               vertical-align: middle;
               cursor: pointer;
-              padding: 10px;
-              margin-right: 11px;
+              position: absolute;
+              top: 0;
+              left: 0;
             }
             .form-group input:checked + label:after {
               content: '';
               display: block;
               position: absolute;
-              top: 3px;
+              top: 6px;
               left: 10px;
               width: 8px;
               height: 14px;
@@ -630,7 +854,7 @@ main{
               border-width: 0 3px 3px 0;
               transform: rotate(35deg);
             }
-            .select-wrapper{
+            .select-wrapper {
               margin-bottom: 0;
               max-width: 378px;
             }
@@ -686,6 +910,7 @@ main{
   }
   .who-we-are{
     position: relative;
+    padding-top: 80px;
     &::before{
       content: '';
       position: absolute;
@@ -708,7 +933,7 @@ main{
         line-height: 18px;
         text-align: center;
         text-transform: uppercase;
-        margin: 80px 0 55px;
+        margin: 0px 0 55px;
       }
       .inform{
         margin-bottom: 45px;
@@ -876,13 +1101,17 @@ footer{
 .modal {
   max-width: 750px;
   width: 100%;
-  min-height: 512px;
   border-radius: 7px;
   border-top: 1px solid #ff7800;
   background-color: #0a1230;
   box-shadow: 0 33px 17px 5px rgba(8, 3, 32, 0.42);
   position: relative;
   display: none;
+
+  &.fancybox-content {
+    padding-left: 0;
+    padding-right: 0;
+  }
   
   &::after {
     position: absolute;
@@ -905,12 +1134,12 @@ footer{
 
 
   .modal-content{
-    position: absolute;
-    z-index: 2;
-    max-width: 555px;
+    max-width: 565px;
     width: 100%;
-    left: 50%;
-    transform: translateX(-50%);
+    max-height: 90vh;
+    overflow-y: auto;
+    margin-left: auto;
+    margin-right: auto;
     color: #ffffff;
     font-family: Lato;
     font-size: 16px;
@@ -918,6 +1147,10 @@ footer{
     font-style: normal;
     letter-spacing: normal;
     line-height: 1.4;
+    position: relative;
+    z-index: 2;
+    padding-left: 5px;
+    padding-right: 5px;
 
     h2{
       color: #ff7800;
@@ -926,7 +1159,6 @@ footer{
       font-weight: 700;
       font-style: normal;
       letter-spacing: normal;
-      line-height: 9.53px;
       text-align: center;
       text-transform: uppercase;
       margin-top: 30px;
@@ -972,6 +1204,30 @@ footer{
         display: flex;
         justify-content: space-between;
         margin: 14px 0 54px;
+
+        &-item {
+          color: #f4f7fe;
+          font-family: 'Lato-Regular';
+          font-size: 16px;
+          font-weight: 400;
+          font-style: normal;
+          letter-spacing: normal;
+          line-height: 17px;
+          text-align: left;
+          padding: 11px 0 11px 20px;
+          position: relative;
+          
+          &::before {
+            content: '';
+            position: absolute;
+            left: 0px;
+            width: 8px;
+            height: 14px;
+            border: 3px solid #ff7e0e;
+            border-width: 0 3px 3px 0;
+            transform: rotate(35deg);
+            }
+        }
         ul{
           position: relative;
           width: 50%;
@@ -1298,16 +1554,7 @@ main{
             .checkbox{
               h3{ font-size: 16px;}
               .form-group label, span {font-size: 14px;}
-              .form-group label:before {
-                width: 16px;
-                height: 16px;
-              }
-              .form-group input:checked + label:after {
-                top: 2px;
-                left: 8px;
-                width: 6px;
-                height: 12px;;
-              }
+              
               .select2 {
                 border-radius: 7px;
                 border: 1px solid #1d2960;
@@ -1333,10 +1580,11 @@ main{
       }
     }
     .who-we-are{
+      padding-top: 36px;
       .container{
         .title-main2{
           font-size: 20px;
-          margin: 36px 0 20px;
+          margin: 0px 0 20px;
         }
         .inform{
           .text{ font-size: 14px;}
@@ -1488,7 +1736,6 @@ main{
   .modal {
     min-height: 415px;
     .modal-content{
-      max-width: 280px;
       
       h2{
         font-size: 18px;
@@ -1497,19 +1744,16 @@ main{
       form{
         .form-group{
           input{
-            width: 280px;
+            width: 100%;
             height: 32px;
           }
         }  
         .selected-product{
-          flex-direction: column;
           margin: 14px 0;
-          ul{
-            width: 100%;
-            li{
+
+          &-item {
             font-size: 14px;
             padding: 11px 0 11px 20px;
-            }
           }
         }
         .btn-send{
@@ -1523,6 +1767,11 @@ main{
  
 }
 
+@media screen and (min-width: 1200px) {
+  .max-w-custom-select {
+    max-width: 257px;
+  }
+}
 @media screen and (max-width: 460px) {
   .who-we-are-icon-group {
     max-width: 320px;

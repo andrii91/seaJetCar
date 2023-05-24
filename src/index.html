@@ -158,12 +158,11 @@
               <div class="exterior">
                 <h3>exterior</h3>
                 <div class="select-wrapper">Engine
-                  <select class="select2">
-                    <option value="1">Standart +0$</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
+                  <select class="select2" data-class="select-color">
+                    <option data-color="#000" value="1">Standart +0$</option>
+                    <option data-color="red" value="2">2</option>
+                    <option data-color="#fffeee" value="3">3</option>
                   </select>
-                  <div class="select-arrow"></div>
                 </div>
 
                 <div class="select-wrapper">Body color
@@ -172,7 +171,6 @@
                     <option value="2">Green</option>
                     <option value="3">Red</option>
                   </select>
-                  <div class="select-arrow"></div>
                 </div>
                 
               </div>
@@ -184,7 +182,6 @@
                     <option value="2">Yellow</option>
                     <option value="3">Black</option>
                   </select>
-                  <div class="select-arrow"></div>
                 </div>
 
                 <div class="select-wrapper">Seat color
@@ -193,41 +190,38 @@
                     <option value="2">Green</option>
                     <option value="3">Red</option>
                   </select>
-                  <div class="select-arrow"></div>
                 </div>
 
               </div>
             </div>
             <div class="checkbox">
               <h3>Additional options</h3>
-              <form>
-                <div class="form-group">
-                  <input type="checkbox" id="spoiler">
-                  <label for="spoiler">Spoiler <span>+ $500</span></label>
-                </div>
-                <div class="form-group">
-                  <input type="checkbox" id="airbrush">
-                  <label for="airbrush">Airbrush painting <span>+ $500</span></label>
-                </div>
-                <div class="form-group">
-                  <input type="checkbox" id="multimedia">
-                  <label for="multimedia">Waterproof multimedia <span>+ $500</span></label>
-                </div>
-                <div class="form-group">
-                  <input type="checkbox" id="unique_stickers">
-                  <label for="unique_stickers">Unique stickers <span>+ $500</span></label>
-                </div>
-
-                <div class="select-wrapper"><!-- delivery -->
-                  <select class="select2">
-                    <option value="1">Delivery to the customs point</option>
-                    <option value="2">Yellow</option>
-                    <option value="3">Black</option>
-                  </select>
-                  <div class="select-arrow"></div>
-                </div>
-
-              </form>
+              <div class="checkbox-row">
+                  <div class="checkbox-custom">
+                    <input type="checkbox" id="spoiler">
+                    <label for="spoiler">Spoiler <span>+ $500</span></label>
+                  </div>
+                  <div class="checkbox-custom">
+                    <input type="checkbox" id="airbrush">
+                    <label for="airbrush">Airbrush painting <span>+ $500</span></label>
+                  </div>
+                  <div class="checkbox-custom">
+                    <input type="checkbox" id="multimedia">
+                    <label for="multimedia">Waterproof multimedia <span>+ $500</span></label>
+                  </div>
+                  <div class="checkbox-custom">
+                    <input type="checkbox" id="unique_stickers">
+                    <label for="unique_stickers">Unique stickers <span>+ $500</span></label>
+                  </div>
+                  <div class="select-wrapper"><!-- delivery -->
+                    <select class="select2">
+                      <option value="1">Delivery to the customs point</option>
+                      <option value="2">Yellow</option>
+                      <option value="3">Black</option>
+                    </select>
+                    <div class="select-arrow"></div>
+                  </div>
+              </div>
             </div>
             <div class="total">Total <span>$18000</span></div>
             <a data-fancybox href="#send" class="btn-form">Order now</a>
@@ -296,8 +290,8 @@
       </div>
     </section>
   </main>
-  <footer class="footer">
-    <div class="container">2023 All right reserved</div>
+  <footer>
+    <div class="container footer">2023 All right reserved</div>
   </footer>
 
   <div id="send" class="modal">

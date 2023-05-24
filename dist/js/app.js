@@ -73,28 +73,26 @@ $( document ).ready(function() {
     $form.find('.submit').prop('disabled', true);
 
 
+     $.ajax({
+        type: 'POST',
+        url: 'php/telegram.php',
+        dataType: 'json',
+        data: $form.serialize(),
+        success: function (response) {}
+      });
+
+
     setTimeout(function () {
-      alert('Success');
-      
       $form.find('.submit').removeClass('inactive');
       $form.find('.submit').prop('disabled', false);
       $form[0].reset();
+      $.fancybox.close();
 
-      $('#check-success').prop('disabled', true)
-      
     }, 1000);
 
   });
 
   $('input[name="phone"]').inputmask("+9{1,15}");
- /*  
-  $('#card_numbe').inputmask("9999 9999 9999 9999");
-  $('#exp_date').inputmask("99/99");
-  $('#cvv').inputmask("999");
-  $('#referral').inputmask("9999999"); */
-  
-
-
 
   // Language
   const selectedLanguage = document.querySelector('.selected-language');
@@ -118,6 +116,12 @@ $( document ).ready(function() {
 
       languageList.classList.remove('show');
       arrowIcon.classList.remove('fa-chevron-up');
+
+      // if(selectedLang !== 'en') {
+      //   window.location.href = `${location.href}${selectedLang}`;
+      // }else{
+      //   window.location.href = '/';
+      // }
     }
   });
 
@@ -188,4 +192,110 @@ $( document ).ready(function() {
     }, 500);
 
   });
+
+  function setOrderPrice() {
+    let summPrice = 18000, orderTitle = '';
+     $('#order-info').text('')
+
+    $('.change-configurator').each(function () {
+      if ($(this).attr('type') === 'checkbox' && $(this).prop('checked')) {
+        summPrice = summPrice + Number($(this).val());
+        orderTitle = orderTitle + '; '+ $(this).parent().find('label').text();
+
+        $('#order-info').append('<div class="selected-product-item col-6">'+$(this).parent().find('label').html()+'</div>');
+      }
+
+      if ($(this).hasClass('select2') && $(this).val() !== 0 && $(this).val() === $(this).children("option:selected").val()) {
+        summPrice = summPrice + Number($(this).children("option:selected").data('value'));
+        orderTitle = orderTitle + '; '+ $(this).children("option:selected").text();
+
+        $('#order-info').append('<div class="selected-product-item col-6">'+$(this).children("option:selected").text()+'</div>')
+      }
+    })
+
+    $('#change-configurator-price').text(`$${summPrice}`)
+    $('input[name="order_summ"]').val(summPrice)
+    $('input[name="order_value"]').val(orderTitle)
+
+  }
+
+  setOrderPrice();
+
+  $('.change-configurator').change(function () {
+    setOrderPrice();
+  })
+
+
+  $('.select-custom').each(function () {
+    var $this = $(this),
+      numberOfOptions = $(this).children('option').length;
+
+    $this.addClass('select-hidden');
+    $this.wrap('<div class="select '+$this.data('class')+'"></div>');
+    
+    if($this.attr('required')) {
+      $this.after('<div class="select-styled required-select"></div>');
+    }else{
+      $this.after('<div class="select-styled"></div>');
+    }
+
+    var $styledSelect = $this.next('div.select-styled');
+    if ($this.children('option[selected]')) {
+      $styledSelect.text($this.children('option[selected]').text());
+
+      if ($styledSelect.text() != '') {
+        $styledSelect.addClass('select-item');
+      }
+
+    }
+
+
+
+    var $list = $('<ul />', {
+      'class': 'select-options'
+    }).insertAfter($styledSelect);
+
+    for (var i = 0; i < numberOfOptions; i++) {
+     let liItem =  $('<li />', {
+        text: $this.children('option').eq(i).text(),
+        rel: $this.children('option').eq(i).val(),
+        color: $this.children('option').eq(i).data('color')
+      }).appendTo($list);
+
+      $('<i style="background: '+$this.children('option').eq(i).data('color')+'" />').prependTo(liItem);
+    }
+
+    var $listItems = $list.children('li');
+
+    $styledSelect.click(function (e) {
+      e.stopPropagation();
+      $('div.select-styled.active').not(this).each(function () {
+        $(this).removeClass('active').next('ul.select-options').slideUp();
+      });
+      $(this).toggleClass('active').next('ul.select-options').slideToggle();
+    });
+
+    $listItems.click(function (e) {
+      e.stopPropagation();
+      $styledSelect.text($(this).text()).removeClass('active error').addClass('select-item');
+      $styledSelect.prepend('<i style="background: '+$(this).attr('color')+'" />');
+      $this.val($(this).attr('rel'));
+      $list.slideUp();
+      setOrderPrice();
+      //console.log($this.val());
+    });
+
+    $(document).click(function () {
+      $styledSelect.removeClass('active');
+      $list.slideUp();
+    });
+  });
+  
+    $('.select-options li').each(function(){
+    if($(this).text() == '' || $(this).text() == ' ') {
+      $(this).hide();
+    }
+  })
+
+
 }); 
